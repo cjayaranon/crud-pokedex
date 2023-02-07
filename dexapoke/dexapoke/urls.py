@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from pokemon.views import PokeSearch as main_poke
+from pokemon.views import AddNewPokemon as add_poke
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', main_poke.as_view(), name='home'),
+    path('add-new-pokemon', add_poke.as_view(), name='addNewPokemon'),
 ]

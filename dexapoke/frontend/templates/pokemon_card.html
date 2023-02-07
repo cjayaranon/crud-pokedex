@@ -1,0 +1,27 @@
+{% load static %}
+<div class="card shadow-sm">
+    <div class="card-img-top">
+        <img src="{% static 'node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\39.svg' %}"
+             alt=""
+             height="100%"
+             width="100%"/>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{% lorem 20 w random %}</p>
+        <div class="collapse" id="cardContent">
+            <div class="card card-body">{% lorem 20 w random %}</div>
+        </div>
+        <div class="btn-group">
+            <button type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cardContent"
+                    aria-expanded="false"
+                    aria-controls="cardContent">
+                View
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+        </div>
+    </div>
+</div>
