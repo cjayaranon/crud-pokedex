@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block pagetitle %}
+    <title>Add New Pokemon</title>
+{% endblock pagetitle %}
+{% block content %}
+    {% include "header.html" %}
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Add a New Pokemon</h1>
+                    <!-- add forms.py -->
+                    <form action="#">
+                        <input type="text" name="pokemon-name" id="pokemonName" class="form-control" />
+                        <br>
+                        <button type="submit" class="btn btn-secondary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

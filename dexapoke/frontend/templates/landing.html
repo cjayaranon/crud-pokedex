@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block pagetitle %}
+  <title>Dex-a-Poke</title>
+{% endblock pagetitle %}
+{% block content %}
+  {% include "header.html" %}
+  <main>
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Search for a Pokémon by name</h1>
+          <form action="#">
+            <input type="text" name="search-bar" id="searchBar" class="form-control" />
+          </form>
+          <!-- show when  -->
+          <p class="lead text-muted">Use the advanced search to explore Pokémon by type.</p>
+          {% include "advanced_search.html" %}
+        </div>
+      </div>
+    </section>
+    <section class="search-results py-5 bg-light container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <!-- for repeat -->
+        <!-- Pokémon card -->
+        <div class="col">{% include "pokemon_card.html" %}</div>
+        <!-- end Pokémon card -->
+        <div class="col">{% include "pokemon_card.html" %}</div>
+      </div>
+    </section>
+  </main>
+{% endblock content %}

@@ -1,0 +1,19 @@
+.header-image {
+  max-height: 4vw;
+}
+
+.card-img-top {
+  height: 10vw;
+  background-color: gray;
+  align-items: center;
+}
+.card-img-top img {
+  max-height: 10vw;
+  padding: 4px;
+}
+
+.card-body {
+  margin-bottom: 16px;
+}
+
+/*# sourceMappingURL=base.css.map */
