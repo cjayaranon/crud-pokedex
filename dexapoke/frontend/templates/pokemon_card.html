@@ -1,13 +1,15 @@
 {% load static %}
 <div class="card shadow-sm">
     <div class="card-img-top">
-        <img src="{% static 'node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\39.svg' %}"
+        <!-- <img src="{% static 'node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\38.svg' %}"
+      -->
+        <img src="{% get_static_prefix %}node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\{{ items.id }}.svg"
              alt=""
              height="100%"
              width="100%"/>
     </div>
     <div class="card-body">
-        <p class="card-text">{% lorem 20 w random %}</p>
+        <p class="card-text">{{ items.id }} {{ items.name }}</p>
         <div class="collapse" id="cardContent">
             <div class="card card-body">{% lorem 20 w random %}</div>
         </div>
