@@ -14,6 +14,8 @@
 
 .card-body {
   margin-bottom: 16px;
+  overflow: auto;
+  font-size: 1.5vw;
 }
 
 /*# sourceMappingURL=base.css.map */
