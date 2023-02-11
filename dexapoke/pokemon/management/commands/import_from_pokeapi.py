@@ -21,9 +21,9 @@ class Command(BaseCommand):
                 pokeapi_url+args[0],
                 params={'limit':data_obj['count']}
             )
-            return response_obj_2.json()
-        else:
-            return data_obj, args[1]
+            data_obj = response_obj_2.json()
+        
+        return data_obj, args[1]
 
 
     def other_tables(addr, target_model):
@@ -32,8 +32,8 @@ class Command(BaseCommand):
         :classmethod: 'get_query_count'.
         """
         data_obj = Command.get_query_count(addr, target_model)
-
-        for idx, items in enumerate(data_obj['results']):
+        # python3.10 use (data_obj['results'])
+        for idx, items in enumerate(data_obj[0]['results']):
             db_entry = target_model.objects.get_or_create(
                 id = idx+1,
                 name = items['name']
@@ -49,15 +49,18 @@ class Command(BaseCommand):
 
         # get pokemon types
         Command.other_tables('type/', PokemonType)
+        time.sleep(5)
 
-        # # get pokemon abilities
+        # get pokemon abilities
         Command.other_tables('ability/', PokemonAbility)
+        time.sleep(5)
 
         # get, save, and associate pokemons
         # one-by-one request using NDEX
-        for pokes in range(1, 20):
+        for pokes in range(1, 30):
             pokemon = rqs.get(
-                'https://pokeapi.co/api/v2/pokemon/'+str(pokes)
+                'https://pokeapi.co/api/v2/pokemon/'+str(pokes),
+                verify=False
             )
             pokemon_data = pokemon.json()
             db_entry = Pokemons.objects.get_or_create(

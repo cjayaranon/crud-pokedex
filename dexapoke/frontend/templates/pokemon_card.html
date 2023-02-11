@@ -1,23 +1,46 @@
 {% load static %}
 <div class="card shadow-sm">
     <div class="card-img-top">
-        <img src="{% static 'node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\39.svg' %}"
+        <!-- <img src="{% static 'node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\38.svg' %}"
+      -->
+        <img src="{% get_static_prefix %}node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\{{ items.id }}.svg"
              alt=""
              height="100%"
              width="100%"/>
     </div>
     <div class="card-body">
-        <p class="card-text">{% lorem 20 w random %}</p>
-        <div class="collapse" id="cardContent">
-            <div class="card card-body">{% lorem 20 w random %}</div>
+        <p class="card-text">{{ items.id }} {{ items.name }}</p>
+        <div class="collapse" id="cardContent{{ items.id }}">
+            <div class="card card-body">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Height</td>
+                            <td>{{ items.height }}</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>{{ items.weight }}</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>{{ items.pokemon_type }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ability/s</td>
+                            <td>{{ items.pokemon_ability }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="btn-group">
             <button type="button"
                     class="btn btn-sm btn-outline-secondary"
                     data-bs-toggle="collapse"
-                    data-bs-target="#cardContent"
+                    data-bs-target="#cardContent{{ items.id }}"
                     aria-expanded="false"
-                    aria-controls="cardContent">
+                    aria-controls="cardContent{{ items.id }}">
                 View
             </button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>

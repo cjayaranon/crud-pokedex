@@ -10,7 +10,8 @@
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="fw-light">Search for a Pokémon by name</h1>
-          <form action="#">
+          <form action="{% url 'home' %}" method="post">
+            {% csrf_token %}
             <input type="text" name="search-bar" id="searchBar" class="form-control" />
           </form>
           <!-- show when  -->
@@ -22,9 +23,11 @@
     <section class="search-results py-5 bg-light container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <!-- for repeat -->
-        <!-- Pokémon card -->
-        <div class="col">{% include "pokemon_card.html" %}</div>
-        <!-- end Pokémon card -->
+        {% for items in pokemon_details %}
+          <!-- Pokémon card -->
+          <div class="col">{% include "pokemon_card.html" %}</div>
+          <!-- end Pokémon card -->
+        {% endfor %}
         <div class="col">{% include "pokemon_card.html" %}</div>
       </div>
     </section>
