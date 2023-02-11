@@ -57,7 +57,7 @@ class Command(BaseCommand):
 
         # get, save, and associate pokemons
         # one-by-one request using NDEX
-        for pokes in range(1, 30):
+        for pokes in range(1, 150):
             pokemon = rqs.get(
                 'https://pokeapi.co/api/v2/pokemon/'+str(pokes),
                 verify=False
@@ -68,9 +68,14 @@ class Command(BaseCommand):
                 name = pokemon_data['name'],
                 height = pokemon_data['height'],
                 weight = pokemon_data['weight'],
-                pokemon_type = pokemon_data['types'],
-                pokemon_ability = pokemon_data['abilities']
+                pokemon_type = [[[value for key, value in v.items() if key not in ['url']] for k, v in d.items() if k not in ['slot']] for d in pokemon_data['types']],
+                pokemon_ability = [[[e for d,e in c.items() if e not in ['url']] for b,c in a.items() if b not in ['is_hidden', 'slot']] for a in pokemon_data['abilities']]
             )
+            # type_list = [x for x in pokemon_data['types']]
+            # type_dict = [a for a in type_list]
+            # print(type_dict)
+
+            # type_dict = [[[(key, value) for key, value in v.items() if key not in ['url']] for k, v in d.items() if k not in ['slot']] for d in type_list] 
             time.sleep(3)
 
 # evolution chain
