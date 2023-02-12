@@ -6,6 +6,8 @@ from .pokemon_types import *
 from pokemon.models import Pokemons, PokemonType, PokemonAbility
 from django.core.management.base import BaseCommand, CommandError
 
+rqs.urllib3.disable_warnings()
+
 class Command(BaseCommand):
     help = 'Saves all the Pokemon from PokeAPI into Dex-a-Poke.'
 
@@ -60,7 +62,7 @@ class Command(BaseCommand):
 
         # get, save, and associate pokemons
         # one-by-one request using NDEX
-        for pokes in range(1, 9):
+        for pokes in range(1, 150):
             pokemon = rqs.get(
                 'https://pokeapi.co/api/v2/pokemon/'+str(pokes),
                 verify=False

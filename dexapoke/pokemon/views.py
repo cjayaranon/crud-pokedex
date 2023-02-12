@@ -10,7 +10,7 @@ class PokeSearch(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs) # get the default context data
-        model_objects = self.model.objects.order_by('id')[:9] # add extra field to the context
+        model_objects = self.model.objects.all() # add extra field to the context
         
         # for items in model_objects:
         #     print(items)
