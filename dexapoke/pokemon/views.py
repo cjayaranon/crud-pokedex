@@ -19,15 +19,25 @@ class PokeSearch(TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
+
+        # delete after testing
         print(request.POST)
-        if (request.POST['search-bar']):
+        
+        if (request.POST.get('search-bar')):
             query_list = self.model.objects.filter(
                 name__contains = request.POST['search-bar']
             )
-        elif (request.POST['dropdown-menu']):
+        elif (request.POST.get('dropdown-menu')):
             query_list = self.model.objects.filter(
                 pokemon_type__contains = request.POST['dropdown-menu']
             )
+        elif (request.POST.get('deleteBtn')):
+            query_item = self.model.objects.get(
+                id = request.POST['deleteBtn']
+            )
+            query_item.delete()
+            query_list = self.model.objects.order_by('id')[:9]    
+            
         return render(request, self.template_name, {'pokemon_details':query_list, 'pokemon_types':PokemonType.objects.all()})
 
 
