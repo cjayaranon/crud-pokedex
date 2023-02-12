@@ -18,4 +18,9 @@ These must be satisfied first before going to the next step
 7. Go back to `/crud-pokedex/dexapoke` where `manage.py` is, and run `collectstatic`.
 8. Afterwards, do not forget to run `makemigrations` and `migrate`.
 
+## Populating the Database
+Run `python manage.py import_from_pokeapi`
+This will use <https://pokeapi.co> as its source.[^1]
+[^1]: InsecureRequestWarning will be raised due to unverified HTTPS requests without verified SSL certificates. These are perfectly fine for beta purposes.
+
 Home address is 'localhost:8000'
