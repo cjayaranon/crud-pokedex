@@ -23,4 +23,7 @@ Run `python manage.py import_from_pokeapi`
 This will use <https://pokeapi.co> as its source.[^1]
 [^1]: InsecureRequestWarning will be raised due to unverified HTTPS requests without verified SSL certificates. These are perfectly fine for beta purposes.
 
+## Thank you for reading
 Home address is 'localhost:8000'
+
+> Soli Deo Gloria
