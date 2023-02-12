@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, UpdateView, CreateView
 from .models import *
 # Create your views here.
 
@@ -42,5 +42,22 @@ class PokeSearch(TemplateView):
 
 
 
-class AddNewPokemon(TemplateView):
+class AddNewPokemon(CreateView):
+    model = Pokemons
     template_name = "add_new.html"
+    fields = '__all__'
+    success_url = '/'
+
+
+
+class PokemonUpdateView(UpdateView):
+    model = Pokemons
+    template_name = "edit_pokemon.html"
+    fields = ['name', 'height', 'weight', 'pokemon_type', 'pokemon_ability']
+    success_url = '/'
+
+    def post(self, request, *args, **kwargs):
+        return super(PokemonUpdateView, self).post(request, **kwargs)
+            
+    def form_valid(self, form):
+        return super(PokemonUpdateView, self).form_valid(form)

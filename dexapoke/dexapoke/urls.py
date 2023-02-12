@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from pokemon.views import PokeSearch as main_poke
 from pokemon.views import AddNewPokemon as add_poke
+from pokemon.views import PokemonUpdateView as edit_poke
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_poke.as_view(), name='home'),
     path('add-new-pokemon', add_poke.as_view(), name='addNewPokemon'),
+    path('edit/<pk>', edit_poke.as_view(), name='edit')
 ]

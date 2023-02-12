@@ -53,12 +53,13 @@
                     aria-controls="cardContent{{ items.id }}">
                 View
             </button>
+            <button type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    onclick="location.href='{% url "edit" items.id %}';">
+                Edit
+            </button>
             <form action="{% url 'home' %}" method='post' class="btn-group" name="modifyPokemon">
             {% csrf_token %}
-                <button type="button"
-                        class="btn btn-sm btn-outline-secondary">
-                    Edit
-                </button>
                 <button type="submit"
                         class="btn btn-sm btn-outline-secondary"
                         name="deleteBtn"

@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block pagetitle %}
-    <title>Add New Pokemon</title>
+    <title>Edit Pokemon</title>
 {% endblock pagetitle %}
+
 {% block content %}
     {% include "header.html" %}
     <main>
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">Add a New Pokemon</h1>
-                    <!-- add forms.py -->
+                    <h1 class="fw-light">Edit Pokémon</h1>
                     <form action="" method="post" class="form-control">
                         {% csrf_token %}
                         <table class="table">
@@ -33,3 +34,5 @@
         </section>
     </main>
 {% endblock content %}
+    
+    
