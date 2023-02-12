@@ -15,20 +15,30 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td>Height</td>
+                            <th>Height</th>
                             <td>{{ items.height }}</td>
                         </tr>
                         <tr>
-                            <td>Weight</td>
+                            <th>Weight</th>
                             <td>{{ items.weight }}</td>
                         </tr>
                         <tr>
-                            <td>Type</td>
-                            <td>{{ items.pokemon_type }}</td>
+                            <th>Type</th>
+                            {% for i in items.get_pokemon_type %}
+                            <td>{{ i }}</td>
+                            {% endfor %}
                         </tr>
                         <tr>
-                            <td>Ability/s</td>
-                            <td>{{ items.pokemon_ability }}</td>
+                            <th>Ability/s</th>
+                            {% for i in items.get_pokemon_ability %}
+                            <td>{{ i }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th>Evolution</th>
+                            {% for i in items.get_pokemon_evolution  %}
+                            <td>{{ i }}</td>
+                            {% endfor %}
                         </tr>
                     </tbody>
                 </table>

@@ -1,5 +1,8 @@
 import requests as rqs
 import time
+from .evo_chain import *
+from .pokemon_abilities import *
+from .pokemon_types import *
 from pokemon.models import Pokemons, PokemonType, PokemonAbility
 from django.core.management.base import BaseCommand, CommandError
 
@@ -57,7 +60,7 @@ class Command(BaseCommand):
 
         # get, save, and associate pokemons
         # one-by-one request using NDEX
-        for pokes in range(1, 30):
+        for pokes in range(1, 9):
             pokemon = rqs.get(
                 'https://pokeapi.co/api/v2/pokemon/'+str(pokes),
                 verify=False
@@ -68,8 +71,9 @@ class Command(BaseCommand):
                 name = pokemon_data['name'],
                 height = pokemon_data['height'],
                 weight = pokemon_data['weight'],
-                pokemon_type = pokemon_data['types'],
-                pokemon_ability = pokemon_data['abilities']
+                pokemon_type = get_type(pokemon_data),
+                pokemon_ability = get_ability(pokemon_data),
+                pokemon_evolution = get_evo_chain(pokemon_data)
             )
             time.sleep(3)
 

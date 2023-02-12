@@ -1,3 +1,4 @@
+import re
 from django.db import models
 
 
@@ -52,6 +53,30 @@ class Pokemons(models.Model):
         blank = True,
         null = True
     )
+
+    pokemon_evolution = models.CharField(
+        max_length = 80,
+        blank = True,
+        null = True
+    )
+
+    @property
+    def get_pokemon_type(self):
+        pokemon_type = re.sub('[\[\]\' ]', '', self.pokemon_type)
+        mod_pokemon_type = pokemon_type.split(',')
+        return mod_pokemon_type
+    
+    @property
+    def get_pokemon_ability(self):
+        pokemon_ability = re.sub('[\[\]\' ]', '', self.pokemon_ability)
+        self.pokemon_ability = pokemon_ability.split(',')
+        return self.pokemon_ability
+    
+    @property
+    def get_pokemon_evolution(self):
+        pokemon_evolution = re.sub('[\[\]\' ]', '', self.pokemon_evolution)
+        self.pokemon_evolution = pokemon_evolution.split(',')
+        return self.pokemon_evolution
 
 # Gender (choice)
 # Category (choice)
