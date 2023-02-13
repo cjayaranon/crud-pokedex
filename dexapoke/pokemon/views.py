@@ -10,18 +10,11 @@ class PokeSearch(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs) # get the default context data
-        model_objects = self.model.objects.all() # add extra field to the context
-        
-        # for items in model_objects:
-        #     print(items)
-        context['pokemon_details'] = model_objects
+        context['pokemon_details'] = self.model.objects.all()
         context['pokemon_types'] = PokemonType.objects.all()
         return context
 
     def post(self, request, *args, **kwargs):
-
-        # delete after testing
-        print(request.POST)
         
         if (request.POST.get('search-bar')):
             query_list = self.model.objects.filter(
@@ -36,7 +29,7 @@ class PokeSearch(TemplateView):
                 id = request.POST['deleteBtn']
             )
             query_item.delete()
-            query_list = self.model.objects.order_by('id')[:9]    
+            query_list = self.model.objects.order_by('id')   
             
         return render(request, self.template_name, {'pokemon_details':query_list, 'pokemon_types':PokemonType.objects.all()})
 

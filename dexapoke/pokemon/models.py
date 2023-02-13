@@ -62,8 +62,9 @@ class Pokemons(models.Model):
 
     @property
     def get_pokemon_type(self):
-        pokemon_type = re.sub('[\[\]\' ]', '', self.pokemon_type)
+        pokemon_type = re.sub("[\[\]\' ]", '', self.pokemon_type)
         mod_pokemon_type = pokemon_type.split(',')
+        print(mod_pokemon_type)
         return mod_pokemon_type
     
     @property
@@ -74,8 +75,10 @@ class Pokemons(models.Model):
     
     @property
     def get_pokemon_evolution(self):
-        pokemon_evolution = re.sub('[\[\]\' ]', '', self.pokemon_evolution)
+        pokemon_evolution = re.sub("[\[\]\' ]", '', self.pokemon_evolution)
         self.pokemon_evolution = pokemon_evolution.split(',')
+        print(pokemon_evolution)
+        print(self.pokemon_evolution)
         return self.pokemon_evolution
 
 # Gender (choice)

@@ -62,7 +62,7 @@ class Command(BaseCommand):
 
         # get, save, and associate pokemons
         # one-by-one request using NDEX
-        for pokes in range(1, 150):
+        for pokes in range(1, 151):
             pokemon = rqs.get(
                 'https://pokeapi.co/api/v2/pokemon/'+str(pokes),
                 verify=False
