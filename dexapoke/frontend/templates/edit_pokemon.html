@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block pagetitle %}
+    <title>Edit Pokemon</title>
+{% endblock pagetitle %}
+
+{% block content %}
+    {% include "header.html" %}
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Edit Pokémon</h1>
+                    <form action="" method="post" class="form-control">
+                        {% csrf_token %}
+                        <table class="table">
+                            <tbody>
+                                {% for items in form %}
+                                <tr>
+                                    <th class="form-label">{{ items.label }}</th>
+                                    <td class="form-control">{{ items }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <button type="submit"
+                                class="btn btn-sm btn-outline-primary">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+    
+    

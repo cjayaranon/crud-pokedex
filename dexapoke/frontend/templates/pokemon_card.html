@@ -1,0 +1,73 @@
+{% load static %}
+<div class="card shadow-sm">
+    <div class="card-img-top">
+        <!-- <img src="{% static 'node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\38.svg' %}"
+      -->
+        <img src="{% get_static_prefix %}node_modules\pokeapi-sprites\sprites\pokemon\other\dream-world\{{ items.id }}.svg"
+             alt=""
+             height="100%"
+             width="100%"/>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ items.id }} {{ items.name }}</p>
+        <div class="collapse" id="cardContent{{ items.id }}">
+            <div class="card card-body">
+                <table class="table table-striped-columns">
+                    <tbody>
+                        <tr>
+                            <th>Height</th>
+                            <td>{{ items.height }}</td>
+                        </tr>
+                        <tr>
+                            <th>Weight</th>
+                            <td>{{ items.weight }}</td>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            {% for i in items.get_pokemon_type  %}
+                            <td>{{ i }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th>Ability/s</th>
+                            {% for i in items.get_pokemon_ability  %}
+                            <td>{{ i }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th>Evolution</th>
+                            {% for i in items.get_pokemon_evolution  %}
+                            <td>{{ i }}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cardContent{{ items.id }}"
+                    aria-expanded="false"
+                    aria-controls="cardContent{{ items.id }}">
+                View
+            </button>
+            <button type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    onclick="location.href='{% url "edit" items.id %}';">
+                Edit
+            </button>
+            <form action="{% url 'home' %}" method='post' class="btn-group" name="modifyPokemon">
+            {% csrf_token %}
+                <button type="submit"
+                        class="btn btn-sm btn-outline-secondary"
+                        name="deleteBtn"
+                        value="{{ items.id }}"
+                        onclick="this.form.submit()">
+                    Delete
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

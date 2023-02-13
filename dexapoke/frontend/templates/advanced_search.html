@@ -1,0 +1,21 @@
+{% load static %}
+{% block content %}
+    <section>
+        <div class="dropdown">
+            <form action="{% url 'home' %}" method="post">
+                {% csrf_token %}
+                <button type="button"
+                        class="btn btn-sm btn-secondary dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Filter by Type
+                </button>
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    {% for items in  pokemon_types%}
+                        <li><a href="{% url 'home' %}">{{ items.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </form>
+        </div>
+    </section>
+{% endblock content %}
